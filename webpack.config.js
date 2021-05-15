@@ -48,6 +48,10 @@ module.exports = {
       ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'})
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      base: 'http://www.vanguard-trucking.com/vgdt-driver/'
+    })
+
   ]
 };
