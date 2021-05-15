@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import GroupByDateCard from '../../components/GroupByDateCard';
+import LoadCard from '../../components/CardView/LoadCard';
+import ListToolBar from '../../components/ListToolBar';
 import { getActions } from './actions';
 import { getUpdatedRows } from './rows';
 import { get, getLoadsByKeyValue, getRecordsByIds, save } from '../../services';
@@ -19,6 +22,7 @@ function DriverBoard(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const driver = match.params.driver;
   const actions = getActions(history, driver);
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const getData = (id, employees) => {
     getLoadsByKeyValue('driver', id).then(loads => {
       const brokerIds = loads.reverse().map(load => {
@@ -35,7 +39,7 @@ function DriverBoard(props) {
       });
     })
   }
-  const data = searchTerm ? filteredRows : rows;
+  // const data = searchTerm ? filteredRows : rows;
 
   React.useEffect(() => {
     const makeRequest = async () => {
@@ -76,7 +80,16 @@ function DriverBoard(props) {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        {rows && rows.length ? <GroupByDateCard driverSelect={false} history={history} actions={actions} rows={data} tables={tables} searchTerm={searchTerm}/> : ''}
+        <ListToolBar actions={actions} searchTerm={searchTerm}/>
+        {rows && rows.length && searchTerm ?
+          filteredRows.map((row, indx) => {
+          return (
+              <Grid item xs={12} key={indx} id={row.id}>
+                <LoadCard key={indx} data={row} isMobile={isMobile} actions={actions}/>
+              </Grid>
+            )
+          })
+           : <GroupByDateCard driverSelect={false} history={history} actions={actions} rows={rows} tables={tables} searchTerm={searchTerm}/> }
       </Grid>
     </Grid>
   )

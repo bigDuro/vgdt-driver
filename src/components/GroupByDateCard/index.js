@@ -1,8 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import ListToolBar from '../ListToolBar';
-import EnhancedTableToolbar from '../ListActionBar';
 import WeeklyCard from '../CardView/WeeklyCard';
 import DriverSelect from './DriverSelect';
 import { getMomentWeeks } from '../../utils/dates';
@@ -78,10 +76,6 @@ export default function GroupByDateCard(props) {
   return (
     <React.Fragment>
       <Grid container spacing={1}>
-        <Grid item xs={12}>
-            <ListToolBar actions={actions} searchTerm={searchTerm}/>
-            <EnhancedTableToolbar numSelected={selected.length} {...actions} selected={selected} setSelected={setSelected}/>
-        </Grid>
         <Grid item xs={12}>{driverSelect ? <DriverSelect employees={tables.employees} actions={actions}/> : ''}</Grid>
       {rows && rows.length ? getCards(rows) : ''}
 

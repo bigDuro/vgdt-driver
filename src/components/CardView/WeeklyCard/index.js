@@ -141,7 +141,7 @@ export default function WeeklyCard(props) {
                 {data.map((row, indx) => {
                 return (
                     <Grid item xs={12} key={indx} id={row.id}>
-                      <LoadCard key={indx} data={row} isMobile={isMobile} selected={selected} setSelected={handleSelected} actions={actions}/>
+                      <LoadCard key={indx} data={row} isMobile={isMobile} actions={actions}/>
                     </Grid>
                   )
                 })}
