@@ -1,0 +1,72 @@
+{
+  "name": "vgdt-driver",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-syntax-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@date-io/date-fns": "1.x",
+    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/pickers": "^3.2.10",
+    "@rjsf/core": "^2.4.0",
+    "@rjsf/material-ui": "^2.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.5.0",
+    "chart.js": "^2.9.4",
+    "css-loader": "^4.0.0",
+    "date-fns": "^2.15.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^4.3.0",
+    "logging-library": "^0.5.0",
+    "material-ui-dropzone": "^3.5.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.29.1",
+    "node-sass": "^4.14.1",
+    "php-server": "^0.2.1",
+    "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
+    "react-dom": "^16.13.1",
+    "react-dropzone-uploader": "^2.11.0",
+    "react-file-viewer": "^1.2.1",
+    "react-json-csv": "^2.0.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "zip-a-folder": "0.0.12"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "yarn run clean && webpack && node utilities/ZipFolder.js",
+    "clean": "rm -rf ./build/public/vgdt-driver && rm -rf ./build/public/api.zip && rm -rf ./build/public/assets.zip && rm -rf ./build/public/vgdt-driver-beta.zip && rm -rf ./build/non_public/codeigniter4/codeigniter4-beta.zip",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  }
+}
