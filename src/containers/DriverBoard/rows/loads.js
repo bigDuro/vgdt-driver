@@ -9,7 +9,7 @@ export const getLoadRowData = (rows, tables) => {
           newRow.brokerName = broker.name;
           newRow.hasQuickPay = broker.quickPay !== "0" && broker.quickPay > 0;
           newRow.paymentTerms = broker.paymentTerms;
-
+          newRow.tonuFee = broker.tonuFee;
         }
         return broker
       })
@@ -43,7 +43,7 @@ export const getLoadRowData = (rows, tables) => {
     }
 
 
-    newRow.rate = row.tonu === '1' ? 0 : row.rate;
+    newRow.rate = row.tonu === '1' ? newRow.tonuFee : row.rate;
     newRow.pickupDate = new Date(row.pickupDate).toLocaleString();
     newRow.dropoffDate = new Date(row.dropoffDate).toLocaleString();
     return newRow;

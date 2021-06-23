@@ -119,7 +119,7 @@ const icons = (type, classes) => {
     qpRate: <MonetizationOnIcon className={classes[`Live_icon`]}/>
   }
 
-  return types[type] || false
+  return types[type] || (<PlayCircleFilledWhiteIcon className={classes[`Live_icon`]}/>)
 }
 
 export default function LoadCard(props) {

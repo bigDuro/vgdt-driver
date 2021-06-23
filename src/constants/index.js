@@ -34,24 +34,39 @@ export const LOAD_STATUS = [
     description: ''
   },
   {
-    type: 'planning',
+    type: 'Planning',
     label: 'Planning',
     description: ''
   },
   {
-    type: 'scheduled',
+    type: 'Scheduled',
     label: 'Scheduled',
     description: 'Ready!'
   },
   {
-    type: 'live',
-    label: 'Live',
+    type: 'Shipper',
+    label: 'Shipper',
+    description: 'At Shipper'
+  },
+  {
+    type: 'Loaded',
+    label: 'Loaded',
     description: 'Loaded'
   },
   {
-    type: 'completed',
+    type: 'Reciever',
+    label: 'Reciever',
+    description: 'At Reciever'
+  },
+  {
+    type: 'Completed',
     label: 'Completed',
     description: 'Unloaded'
+  },
+  {
+    type: 'Billed',
+    label: 'Billed',
+    description: 'Billed'
   }
 ];
 
