@@ -81,6 +81,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: grey[100],
   },
   Completed_icon: {
+    color: grey[500],
+  },
+  Droppff_icon: {
     color: red[600],
   },
   Live: {
@@ -111,10 +114,10 @@ const icons = (type, classes) => {
     Scheduled: <WatchLaterIcon className={classes[`${type}_icon`]}/>,
     Live: <PlayCircleFilledWhiteIcon className={classes[`${type}_icon`]}/>,
     Billed: <CheckCircleIcon className={classes[`${type}_icon`]}/>,
-    Completed: <ErrorIcon className={classes[`${type}_icon`]}/>,
+    Completed: <CheckCircleIcon className={classes[`${type}_icon`]}/>,
     Planning: <PauseCircleFilledIcon className={classes[`${type}_icon`]}/>,
     pickupLocation: <RoomIcon className={classes[`Live_icon`]}/>,
-    dropoffLocation: <RoomIcon className={classes[`Completed_icon`]}/>,
+    dropoffLocation: <RoomIcon className={classes[`Droppff_icon`]}/>,
     rate: <MonetizationOnIcon className={classes[`Scheduled_icon`]}/>,
     qpRate: <MonetizationOnIcon className={classes[`Live_icon`]}/>
   }
@@ -147,7 +150,7 @@ export default function LoadCard(props) {
               <IconButton aria-label="settings">
               </IconButton>
             }
-            title={`${data.status}`}
+            title={`${data.status !== 'Billed' ? data.status : 'Completed'}`}
             subheader={`Load Number: ${data.loadNumber}`}
           />
         </Grid>
