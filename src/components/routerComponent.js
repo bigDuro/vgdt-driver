@@ -17,6 +17,7 @@ export default function RouterComponent(props) {
           <Route exact path="/vgdt-driver/assets/:table/:id" component={AssetManager} />
           <Route exact path="/vgdt-driver/:table" component={CommonBoard} />
           <Route exact path="/vgdt-driver/name/:driver" component={DriverBoard} />
+          <Route exact path="/vgdt-driver/name/:driver/load/:id" component={DriverBoard} />
         </Switch>
     </Router>
   );

@@ -1,7 +1,7 @@
 import { getEnv } from '../config';
 import { INVOICE_DATES } from '../constants/';
 
-export const env = getEnv('prod'); // local or prod
+export const env = getEnv('local'); // local or prod
 
 export const get = async (type) => {
   const response = await fetch(`${env}/${type}`)
@@ -106,6 +106,15 @@ export const getRecordsByIds = async (table, ids) => {
   const response = await fetch(`${env}/${table}/getByIds`, {
     method: 'POST',
     body: JSON.stringify(ids),
+  })
+    const json = await response.json();
+    return json;
+}
+
+export const notifyDispatch = async (data) => {
+  const response = await fetch(`${env}/discord/dispatch`, {
+    method: 'POST',
+    body: JSON.stringify(data),
   })
     const json = await response.json();
     return json;

@@ -7,7 +7,6 @@ import EnhancedTableToolbar from '../ListActionBar';
 
 const CardView = (props) => {
   const { rows, table, actions, searchTerm } = props;
-  console.log('table:: ', table);
   const isMobile = useMediaQuery('(max-width:1023px)');
   const [ selected, setSelected ] = React.useState([]);
   const cardTypes = (type, row, indx, handleSelected, actions) => {

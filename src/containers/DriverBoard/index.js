@@ -6,8 +6,9 @@ import LoadCard from '../../components/CardView/LoadCard';
 import ListToolBar from '../../components/ListToolBar';
 import { getActions } from './actions';
 import { getUpdatedRows } from './rows';
-import { get, getLoadsByKeyValue, getRecordsByIds, save } from '../../services';
+import { get, getLoadsByKeyValue, getRecordsByIds, save, notifyDispatch } from '../../services';
 import { filterRecords } from '../../utils/filterTables';
+import { LOAD_STATUS } from '../../constants';
 import './index.scss';
 
 
@@ -19,6 +20,7 @@ function DriverBoard(props) {
   const [rows, setRows] = useState([]);
   const [filteredRows, setFilteredRows] = useState([]);
   const [driverId, setDriverId] = useState('');
+  const loadId = match.params.id || '';
   const [searchTerm, setSearchTerm] = useState('');
   const driver = match.params.driver;
   const actions = getActions(history, driver);
@@ -49,7 +51,7 @@ function DriverBoard(props) {
         })
         if(theDriver && theDriver.length){
           setDriverId(theDriver[0].id);
-          getData(theDriver[0].id, employees)
+          getData(theDriver[0].id, employees);
         }
       });
 
@@ -64,7 +66,18 @@ function DriverBoard(props) {
       const record = {
         id, status
       }
+
+      const statusIndex = LOAD_STATUS.findIndex(statusItem => statusItem.type === status);
+      const loadStatus = LOAD_STATUS[statusIndex];
+      const load = {...rows.filter(row => row.id === id)[0], ...record, ontime: '', status: loadStatus.description};
+
+      if(loadStatus.ontime) {
+        const pickorDropDate = statusIndex < 4 ? load.pickupDate : load.dropoffDate
+        load.ontime = loadStatus.ontime(pickorDropDate);
+      }
+
       save('loads', record).then(data => {
+        notifyDispatch(load);
         getData(driverId, tables.employees)
       })
     })

@@ -46,7 +46,10 @@ export const LOAD_STATUS = [
   {
     type: 'Shipper',
     label: 'Shipper',
-    description: 'At Shipper'
+    description: 'At Shipper',
+    ontime: (time) => {
+      return new Date() < new Date(time) ? 'On Time' : 'Late'
+    }
   },
   {
     type: 'Loaded',
@@ -56,7 +59,10 @@ export const LOAD_STATUS = [
   {
     type: 'Reciever',
     label: 'Reciever',
-    description: 'At Reciever'
+    description: 'At Reciever',
+    ontime: (time) => {
+      return new Date() < new Date(time) ? 'On Time' : 'Late'
+    }
   },
   {
     type: 'Completed',
