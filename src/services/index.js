@@ -1,7 +1,7 @@
 import { getEnv } from '../config';
 import { INVOICE_DATES } from '../constants/';
 
-export const env = getEnv('local'); // local or prod
+export const env = getEnv('prod'); // local or prod
 
 export const get = async (type) => {
   const response = await fetch(`${env}/${type}`)
