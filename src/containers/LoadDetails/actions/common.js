@@ -1,15 +1,27 @@
-
-export const getCommonActions = (history, driver) => {
+export const getCommonActions = (table, history) => {
 
   return {
-      handleClick: false,
-      handleAdd: false,
-      handleRefresh: false,
-      handleDelete: false,
-      handleExport: false,
-      getDriver: () => driver,
+      handleClick: (id) => {
+        return true
+      },
+      handleChange: (e) => {
+        e.preventDefault();
+        return true
+      },
+      handleAdd: () => {
+        return true
+      },
+      handleRefresh: (tbl) => {
+        return true
+      },
+      handleDelete: (ids) => {
+        return true
+      },
+      handleClear: () => {
+        return true
+      },
       handleUpload: (id) => {
-        history.push(`../assets/loads/${id}`);
+        return true
       }
     }
 }

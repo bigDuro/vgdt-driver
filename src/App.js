@@ -27,6 +27,7 @@ function Copyright() {
 
 function App(props) {
   const { classes } = props;
+  const [driver, setDriver] = React.useState(history.location.pathname.split('/')[3]);
   const showNav = useMediaQuery('(min-width:1023px)');
   const [state, setState] = React.useState({
     left: false
@@ -34,7 +35,7 @@ function App(props) {
   const toggleDrawer = (anchor) => {
     setState({ ...state, [anchor]: !state.left });
   };
-  
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -43,8 +44,8 @@ function App(props) {
           <div className={`dc_test ${classes.app}`}>
             <Header toggleDrawer={toggleDrawer} showToggle={!showNav}/>
             {showNav ?
-              <NavigatorStatic toggleDrawer={toggleDrawer} anchor="left" open={state["left"]} history={history} className={classes.nav}/> :
-              <Navigator toggleDrawer={toggleDrawer} anchor="left" open={state["left"]} history={history} className={classes.nav}/>
+              <NavigatorStatic toggleDrawer={toggleDrawer} anchor="left" open={state["left"]} history={history} className={classes.nav} driver={driver}/> :
+              <Navigator toggleDrawer={toggleDrawer} anchor="left" open={state["left"]} history={history} className={classes.nav} driver={driver}/>
             }
             <main className={classes.main}>
               <RouterComponent history={history}/>

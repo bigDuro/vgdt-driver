@@ -20,6 +20,8 @@ import ErrorIcon from '@material-ui/icons/Error';
 import RoomIcon from '@material-ui/icons/Room';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ControlPanel from './ControlPanel/';
 
 const useStyles = makeStyles((theme) => ({
@@ -106,6 +108,10 @@ const useStyles = makeStyles((theme) => ({
   },
   quickPayIcon: {
     position: 'absolute'
+  },
+  margin: {
+    width: '.5em',
+    color: grey[500]
   }
 }));
 
@@ -129,7 +135,8 @@ export default function LoadCard(props) {
   const { data, actions, isExpanded } = props;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(isExpanded);
-
+  const [pickCopied, setPickCopied] = React.useState(false);
+  const [dropCopied, setDropCopied] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -161,9 +168,18 @@ export default function LoadCard(props) {
               {icons('pickupLocation', classes)}
             </Avatar>
           }
-          title={`${data.pickupLocation}`}
+          action={
+            <CopyToClipboard text={data.pickupLocation} onCopy={() => setPickCopied(true)}>
+              <IconButton size="small" color="primary" aria-label="copy address" component="span" >
+                {pickCopied ? <Typography variant="caption" color="textSecondary" component="p">Copied</Typography> : <FileCopyIcon className={classes.margin}/>}
+              </IconButton>
+            </CopyToClipboard>
+          }
+          title={`${data.pickupLocation} `}
           subheader={`${data.pickupDate}`}
         />
+
+
         </Grid>
         <Grid item  xs={12} sm={4} md={3}>
           <CardHeader
@@ -171,6 +187,13 @@ export default function LoadCard(props) {
             <Avatar aria-label="drop" className={classes.cardActions}>
               {icons('dropoffLocation', classes)}
             </Avatar>
+          }
+          action={
+            <CopyToClipboard text={data.dropoffLocation} onCopy={() => setDropCopied(true)}>
+              <IconButton size="small" color="primary" aria-label="copy address" component="span">
+                {dropCopied ? <Typography variant="caption" color="textTertiary" component="p">Copied</Typography> : <FileCopyIcon className={classes.margin}/>}
+              </IconButton>
+            </CopyToClipboard>
           }
           title={`${data.dropoffLocation}`}
           subheader={`${data.dropoffDate}`}
@@ -191,7 +214,6 @@ export default function LoadCard(props) {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <CardActions disableSpacing className={classes.cardActions}>
-            {<ControlPanel row={data} actions={actions}/>}
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: expanded,

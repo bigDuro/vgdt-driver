@@ -28,51 +28,66 @@ export const LOAD_MODEL = {
 
 
 export const LOAD_STATUS = [
-  {
-    type: 'none',
-    label: 'Select Status',
-    description: ''
-  },
+  // {
+  //   type: 'none',
+  //   label: 'Select Status',
+  //   description: '',
+  //   activity: ''
+  // },
   {
     type: 'Planning',
     label: 'Planning',
-    description: ''
+    description: 'Planning',
+    activity: 'Working on something Big...',
+    next: 'Schedule'
   },
   {
     type: 'Scheduled',
     label: 'Scheduled',
-    description: 'Ready!'
+    description: 'Ready!',
+    activity: 'Ready for Pick up!',
+    next: 'At Shipper'
   },
   {
     type: 'Shipper',
     label: 'Shipper',
     description: 'At Shipper',
+    activity: 'Headed to shipper...',
     ontime: (time) => {
       return new Date() < new Date(time) ? 'On Time' : 'Late'
-    }
+    },
+    next: 'Loaded'
   },
   {
     type: 'Loaded',
     label: 'Loaded',
-    description: 'Loaded'
+    description: 'Loaded',
+    activity: 'Loading...',
+    next: 'At Reciever'
   },
   {
     type: 'Reciever',
     label: 'Reciever',
     description: 'At Reciever',
+    activity: 'In route to reciever...',
     ontime: (time) => {
       return new Date() < new Date(time) ? 'On Time' : 'Late'
-    }
+    },
+    next: 'Empty & Headed Out...'
   },
   {
     type: 'Completed',
     label: 'Completed',
-    description: 'Unloaded'
+    description: 'Unloaded',
+    activity: 'Unloading...',
+    next: "Create Invoice!"
   },
   {
     type: 'Billed',
     label: 'Billed',
-    description: 'Billed'
+    description: 'Billed',
+    activity: 'Empty and headed out!',
+    next: "Completed!"
   }
 ];
 

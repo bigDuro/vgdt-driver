@@ -54,10 +54,14 @@ const styles = (theme) => ({
 });
 
 function Navigator(props) {
-  const { toggleDrawer, anchor, open, history, classes } = props;
-  const navigate = (location) => {
-    history.push(`${location}`);
+  const { toggleDrawer, anchor, open, history, classes, driver } = props;
+  const navigate = (navItem) => {
+    const { route, table } = navItem;
+    history.push(`${route}/${driver}/${table}`);
+    return true;
   }
+
+
 
   return (
     <Drawer anchor={anchor} open={open} onClose={() => toggleDrawer(anchor)}>
@@ -75,7 +79,7 @@ function Navigator(props) {
         />
         <List>
           {navigation.map((item, index) => (
-            <ListItem onClick={() => navigate(item.route)} button key={index} className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
+            <ListItem onClick={() => navigate(item)} button key={index} className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItem>

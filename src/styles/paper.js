@@ -9,6 +9,15 @@ export const paperStyles = makeStyles((theme) => ({
     textAlign: 'left',
     color: theme.palette.text.secondary
   },
+  cardActionArea: {
+    padding: theme.spacing(3),
+  },
+  cardViewer: {
+    margin: theme.spacing(3),
+  },
+  cardPDFViewer: {
+    margin: theme.spacing(1),
+  }
 }));
 
 

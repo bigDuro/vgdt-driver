@@ -30,6 +30,7 @@ function FileUploader(props) {
       onChangeStatus={handleChangeStatus}
       onSubmit={null}
       accept="image/*,application/pdf"
+      inputContent={"Click to Upload Bol/POD/s"}
     />
   )
 }

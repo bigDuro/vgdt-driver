@@ -20,11 +20,15 @@ function DriverBoard(props) {
   const [rows, setRows] = useState([]);
   const [filteredRows, setFilteredRows] = useState([]);
   const [driverId, setDriverId] = useState('');
+  const [driver, setDriver] = useState(match.params.driver);
   const loadId = match.params.id || '';
   const [searchTerm, setSearchTerm] = useState('');
-  const driver = match.params.driver;
   const actions = getActions(history, driver);
   const isMobile = useMediaQuery('(max-width:1023px)');
+  const steps = LOAD_STATUS.reduce((list, step) => {
+    list.push(step.description);
+    return list;
+  }, []);
   const getData = (id, employees) => {
     getLoadsByKeyValue('driver', id).then(loads => {
       const brokerIds = loads.reverse().map(load => {
@@ -98,7 +102,7 @@ function DriverBoard(props) {
           filteredRows.map((row, indx) => {
           return (
               <Grid item xs={12} key={indx} id={row.id}>
-                <LoadCard key={indx} data={row} isMobile={isMobile} actions={actions}/>
+                <LoadCard key={indx} data={row} isMobile={isMobile} actions={actions} steps={steps}/>
               </Grid>
             )
           })

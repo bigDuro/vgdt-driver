@@ -5,7 +5,7 @@ import { getAssets, uploadAssets, deleteAssets } from '../../services';
 // import './index.scss';
 
 function AssetManager(props) {
-  const { history, match } = props;
+  const { history, match, isMobile } = props;
   const table = match.params.table;
   const id = match.params.id;
   const [ assets, setAssets ] = React.useState([])
@@ -26,12 +26,12 @@ function AssetManager(props) {
       setAssets(response)
     }
     makeRequest();
-  }, [assets]);
+  }, []);
 
   return (
     <div className="AssetManager">
       <FileUploader handleUpload={uploadFile} table={table} id={id} handleDelete={deleteFile}/>
-      <FileLoader assets={assets} deleteFile={deleteFile} id={id} table={table}/>
+      <FileLoader assets={assets} deleteFile={deleteFile} id={id} table={table} isMobile={isMobile}/>
     </div>
   )
 }
