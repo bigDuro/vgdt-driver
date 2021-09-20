@@ -171,7 +171,7 @@ export default function LoadCard(props) {
           action={
             <CopyToClipboard text={data.pickupLocation} onCopy={() => setPickCopied(true)}>
               <IconButton size="small" color="primary" aria-label="copy address" component="span" >
-                {pickCopied ? <Typography variant="caption" color="textSecondary" component="p">Copied</Typography> : <FileCopyIcon className={classes.margin}/>}
+                {pickCopied ? <Typography variant="caption" color="textTertiary" component="p">Copied</Typography> : <FileCopyIcon className={classes.margin}/>}
               </IconButton>
             </CopyToClipboard>
           }

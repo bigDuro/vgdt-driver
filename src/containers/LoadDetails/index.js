@@ -5,6 +5,7 @@ import LoadCard from '../../components/CardView/LoadCard/full';
 import Tracker from '../../components/CardView/LoadCard/Tracker/';
 import AssetManager from '../AssetManager'
 import { getActions } from './actions';
+import { getUpdatedRows } from './rows';
 import { getByID, getRecordsByIds, save, notifyDispatch } from '../../services';
 import { filterRecords } from '../../utils/filterTables';
 import './index.scss';
@@ -72,8 +73,12 @@ function CommonBoard(props) {
             upLoad.tractorName = tractor.unit_num;
             upLoad.trailerName = trailer.unit_num;
           }
+
           return upLoad;
         }, {...load})
+
+        updatedLoad.pickupDate = new Date(updatedLoad.pickupDate).toLocaleString()
+        updatedLoad.dropoffDate = new Date(updatedLoad.dropoffDate).toLocaleString()
         setLoad(updatedLoad);
       })
     });
@@ -87,7 +92,7 @@ function CommonBoard(props) {
         id, status: status.type
       }
       if(status.ontime) {
-        const pickorDropDate = index < 4 ? updatedLoad.pickupDate : updatedLoad.dropoffDate
+        const pickorDropDate = index < 2 ? updatedLoad.pickupDate : updatedLoad.dropoffDate
         updatedLoad.ontime = status.ontime(pickorDropDate);
       }
 
