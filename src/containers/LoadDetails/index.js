@@ -70,8 +70,8 @@ function CommonBoard(props) {
           }else if (item.equipment && item.equipment.length) {
             const tractor = item.equipment.filter(eqt => eqt.id === load.tractor)[0];
             const trailer = item.equipment.filter(eqt => eqt.id === load.trailer)[0];
-            upLoad.tractorName = tractor.unit_num;
-            upLoad.trailerName = trailer.unit_num;
+            upLoad.tractorName = tractor ? tractor.unit_num : '';
+            upLoad.trailerName = trailer ? trailer.unit_num : '';
           }
 
           return upLoad;
