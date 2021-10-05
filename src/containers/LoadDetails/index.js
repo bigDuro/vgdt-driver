@@ -98,7 +98,7 @@ function CommonBoard(props) {
       }
 
       save('loads', record).then(data => {
-        // notifyDispatch(updatedLoad);
+        notifyDispatch(updatedLoad);
         getLoadDetails();
       })
     })
