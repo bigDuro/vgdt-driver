@@ -43,9 +43,15 @@ function FileLoader(props) {
                 <CardActionArea className={classes.cardActionArea} onClick={()=> window.open(`${env}/assets/${table}/${id}/${file}`, "_blank")}>
                   {file.includes('pdf') ?
                   <div className={classes.cardPDFViewer}>
-                    {isMobile ? <Typography variant="h6" color="textSecondary" component="p" align="center">
-                      Cick to view Ratecon
-                    </Typography> : <FileViewer
+                    {isMobile ?
+                    <FileViewer
+                      fileType={'png'}
+                      filePath={`http://vanguard-trucking.com/api/assets/users/2/Screen_Shot_2021_10_04_at_9.13.07_PM.png`}
+                      errorComponent={CustomErrorComponent}
+                      onError={onError}
+                      />
+
+                    : <FileViewer
                       fileType={file.split('.')[1]}
                       filePath={`${env}/assets/${table}/${id}/${file}`}
                       errorComponent={CustomErrorComponent}

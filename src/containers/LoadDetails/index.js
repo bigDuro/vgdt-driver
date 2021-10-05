@@ -43,7 +43,7 @@ function CommonBoard(props) {
       const brokerIds = [load.broker];
       const employeeIds = [load.driver, load.user];
       const equipmentIds = [load.tractor, load.trailer];
-      const step = load.status ? filteredSteps.findIndex(x => x.type === load.status) + 1 : 1;
+      const step = load.status && load.status === 'Billed' ? filteredSteps.length : load.status && load.status !== 'Billed' ? filteredSteps.findIndex(x => x.type === load.status) + 1 : 1;
       const driversteps = filteredSteps.reduce((list, step, indx) => {
         list.push(step.description);
         return list;
@@ -62,6 +62,7 @@ function CommonBoard(props) {
           if(item.brokers && item.brokers.length){
             const broker = item.brokers.filter(broker => broker.id === load.broker)[0]
             upLoad.brokerName = broker.name;
+            upLoad.tonuFee = broker.tonuFee;
           }else if(item.employees && item.employees.length){
             const driver = item.employees.filter(employee => employee.id === load.driver)[0];
             const dispatch = item.employees.filter(employee => employee.id === load.user)[0]
@@ -76,7 +77,7 @@ function CommonBoard(props) {
 
           return upLoad;
         }, {...load})
-
+        updatedLoad.rate = updatedLoad.tonu === '1' ? updatedLoad.tonuFee : updatedLoad.rate;
         updatedLoad.pickupDate = new Date(updatedLoad.pickupDate).toLocaleString()
         updatedLoad.dropoffDate = new Date(updatedLoad.dropoffDate).toLocaleString()
         setLoad(updatedLoad);
@@ -97,7 +98,7 @@ function CommonBoard(props) {
       }
 
       save('loads', record).then(data => {
-        notifyDispatch(updatedLoad);
+        // notifyDispatch(updatedLoad);
         getLoadDetails();
       })
     })

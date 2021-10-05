@@ -5,6 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {StepContent, Box} from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HorizontalLinearStepper(props) {
   const { data, handleStatus, activeStep, steps, activity, nextLabel, isMobile } = props;
-  const { id, status, broker } = data;
+  const { id, status, broker, pickupLocation, dropoffLocation } = data;
   const classes = useStyles();
   const label = steps[activeStep];
   const orientation = isMobile ? 'vertical' : 'horizontal';
@@ -48,9 +49,17 @@ export default function HorizontalLinearStepper(props) {
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
+            console.log('activeStep === steps.length', activeStep, steps.length);
             return (
               <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+                <StepLabel {...labelProps}>
+                  {label}
+                </StepLabel>
+                <StepContent>
+                  <Typography>{index === 0 ? pickupLocation : ''}{index === 2 ? dropoffLocation : ''}</Typography>
+                  <Box sx={{ mb: 2 }}>
+                  </Box>
+                </StepContent>
               </Step>
             );
           })}
@@ -59,7 +68,7 @@ export default function HorizontalLinearStepper(props) {
           {activeStep === steps.length ? (
             <div className={classes.buttonContainer}>
               <Typography variant="body2">
-                Deliver is completed - Procede to Upload BOL/POD below.
+                Deliver is completed - Proceed to Upload BOL/POD below.
               </Typography>
             </div>
           ) : (

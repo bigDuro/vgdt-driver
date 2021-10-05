@@ -42,7 +42,6 @@ export const getLoadRowData = (rows, tables) => {
       })
     }
 
-
     newRow.rate = row.tonu === '1' ? newRow.tonuFee : row.rate;
     newRow.pickupDate = new Date(row.pickupDate).toLocaleString();
     newRow.dropoffDate = new Date(row.dropoffDate).toLocaleString();

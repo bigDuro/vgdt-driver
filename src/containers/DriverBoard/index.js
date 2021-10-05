@@ -37,7 +37,7 @@ function DriverBoard(props) {
       getRecordsByIds('brokers', brokerIds).then(brokers => {
         const tempData = {
           'employees': employees,
-          'brokers': brokers,
+          'brokers': brokers.brokers,
           'loads': loads
         }
         setTables(tempData);

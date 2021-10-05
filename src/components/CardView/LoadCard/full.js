@@ -112,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     width: '.5em',
     color: grey[500]
+  },
+  loadDetails: {
+    padding: '5px 10px',
+    backgroundColor: grey[200]
   }
 }));
 
@@ -210,6 +214,32 @@ export default function LoadCard(props) {
           subheader={!actions.handleBrokerClick ? <Typography variant="body2" color="textSecondary" component="p">{data.brokerName}</Typography> : !data.brokerName ? <Link href="#" style={{color:"#ff0303"}} onClick={(e) => actions.handleBrokerClick(e, data.id, data.broker)}>Add Broker!</Link> : <Link href="#" onClick={(e) => actions.handleBrokerClick(e, data.id, data.broker)}>{data.brokerName}</Link>}
         />
         </Grid>
+
+
+        <Grid container spacing={0} alignItems="center" justify="space-between" className={classes.loadDetails}>
+          <Grid item  xs={12} sm={4} md={3}>
+            <Typography variant="body2" color="textSecondary" className={classes.loadDetails} component="p">
+              <b>Reference Numbers</b>
+            </Typography>
+          </Grid>
+          <Grid item  xs={12} sm={4} md={3}>
+            <Typography variant="body2" color="textSecondary" className={classes.loadDetails} component="p">
+              <b>Pickup #:</b> {data.pickUpNumber}
+            </Typography>
+          </Grid>
+          <Grid item  xs={12} sm={4} md={3}>
+            <Typography variant="body2" color="textSecondary" className={classes.loadDetails} component="p">
+              <b>BOL #:</b> {data.bolNumber}
+            </Typography>
+          </Grid>
+          <Grid item  xs={12} sm={4} md={3}>
+            <Typography variant="body2" color="textSecondary" className={classes.loadDetails} component="p">
+              <b>Order #:</b> {data.orderNumber}
+            </Typography>
+          </Grid>
+
+        </Grid>
+
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -232,7 +262,7 @@ export default function LoadCard(props) {
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
-                <b>Dispatch:</b> {data.user}
+                <b>Dispatch:</b> {data.dispatchName}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 <b>Miles:</b> {data.loadedMiles}
@@ -248,6 +278,7 @@ export default function LoadCard(props) {
                   <b>Quickpay Terms: {data.paymentTerms} day/s</b>: ''
                 }
               </Typography>
+
               <Typography variant="body2" color="textSecondary" component="p"><b>Notes:</b></Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 {data.notes}
