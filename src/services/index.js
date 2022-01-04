@@ -112,6 +112,8 @@ export const getRecordsByIds = async (table, ids) => {
 }
 
 export const notifyDispatch = async (data) => {
+  console.log('notifyDispatch:: ', notifyDispatch);
+  return data;
   const response = await fetch(`${env}/discord/dispatch`, {
     method: 'POST',
     body: JSON.stringify(data),
