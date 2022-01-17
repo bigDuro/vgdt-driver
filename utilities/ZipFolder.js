@@ -4,7 +4,7 @@ const vgdtAPI_zip = 'build/public/api.zip';
 
 const codeigniter4_zip = 'build/non_public/codeigniter4/codeigniter4-beta.zip';
 const publicHtml = 'build/public/vgdt-driver';
-const publicHtml_zip = 'build/public/vgdt-driver-beta-v2.zip';
+const publicHtml_zip = 'build/public/vgdt-driver-beta-v3.zip';
 const publicAssets = 'src/assets';
 const publicAssets_zip = 'build/public/assets.zip';
 const publicAPI = 'build/public/api';

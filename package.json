@@ -52,7 +52,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "yarn run clean && webpack && node utilities/ZipFolder.js",
-    "clean": "rm -rf ./build/public/vgdt-driver && rm -rf ./build/public/api.zip && rm -rf ./build/public/assets.zip && rm -rf ./build/public/vgdt-driver-beta-v2.zip && rm -rf ./build/non_public/codeigniter4/codeigniter4-beta.zip",
+    "clean": "rm -rf ./build/public/vgdt-driver && rm -rf ./build/public/api.zip && rm -rf ./build/public/assets.zip && rm -rf ./build/public/vgdt-driver-beta-v3.zip && rm -rf ./build/non_public/codeigniter4/codeigniter4-beta.zip",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

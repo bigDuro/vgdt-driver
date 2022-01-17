@@ -124,6 +124,9 @@ function CommonBoard(props) {
         <Typography variant="h5" color="textSecondary" component="p" className={classes.headings}>
           Load Details
         </Typography>
+        <Typography variant="h6" color="textSecondary" component="p" className={classes.headings}>
+          Pickup Number: {load.pickUpNumber}
+        </Typography>
         <LoadCard data={load} isMobile={isMobile} actions={actions} isExpanded={true}/>
       </Grid>
       <Grid item xs={12}>
